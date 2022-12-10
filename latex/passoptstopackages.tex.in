@@ -1,5 +1,5 @@
 %
-% START: LSLY latex_custom_passoptionstopackages
+% START: latex_custom_passoptionstopackages
 %
 % Set up behavior of all captions
 \PassOptionsToPackage{{%%
@@ -27,5 +27,5 @@
     bookmarksnumbered=true,%%
 }}{{hyperref}}
 %
-% END: LSLY latex_custom_passoptionstopackages
+% END: latex_custom_passoptionstopackages
 %

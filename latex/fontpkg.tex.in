@@ -1,5 +1,5 @@
 %
-% START: LSLY tikz_custom_fontpkg latex_custom_fontpkg
+% START: tikz_custom_fontpkg latex_custom_fontpkg
 %
 \RequirePackage{{fontspec}}
 %setmainfont[Ligatures=TeX]{{DejaVu Serif}}
@@ -61,5 +61,5 @@
 \usepackage[CJK]{{ucharclasses}}
 \setTransitionsForCJK{{\mycjkfont}}{{\myregularfont}}
 %
-% END: LSLY tikz_custom_fontpkg latex_custom_fontpkg
+% END: tikz_custom_fontpkg latex_custom_fontpkg
 %

@@ -1,5 +1,5 @@
 %
-% START: LSLY latex_custom_preamble
+% START: latex_custom_preamble
 %
 % Set up the publisher
 \authoraddress{{\sphinxstylestrong{{{publisher}}}\\
@@ -106,5 +106,5 @@
 \xpretocmd{{\listofacronyms}}{{\stepcounter{{chapter}}}}{{}}{{}}
 \xpretocmd{{\listofacronyms}}{{\cleardoublepage\phantomsection}}{{}}{{}}
 %
-% END: LSLY latex_custom_preamble
+% END: latex_custom_preamble
 %
