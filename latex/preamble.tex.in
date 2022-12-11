@@ -4,7 +4,8 @@
 % Set up the publisher
 \authoraddress{{\sphinxstylestrong{{{publisher}}}\\
   \sphinxstyleemphasis{{{contactaddr}}}\\
-  Email: \sphinxemail{{{contactemail}}}
+  Email: \sphinxemail{{{contactemail}}}\\
+  WWW: \sphinxemail{{{contactweb}}}
 }}
 \setreleaseinfo{{\\ VCS: \sphinxstylestrong{{{identify}}}}}
 %
