@@ -1,0 +1,27 @@
+#!{python_executable}
+# -*- coding: utf-8 -*-
+
+import subprocess
+from pathlib import Path
+
+builddir = Path(__file__).absolute().parents[0]
+
+pdf_title = '{title}, {subtitle}'
+pdf_author = '{publisher}, {author}'
+pdf_subject = '{title} – {subtitle}. Release: {release} ({identify})'
+
+subprocess.call([
+    'decktape',
+    'reveal',
+    '--chrome-arg=--allow-file-access-from-files',
+    '--pdf-author', '"{{}}"'.format(pdf_author),
+    '--pdf-title', '"{{}}"'.format(pdf_title),
+    '--pdf-subject', '"{{}}"'.format(pdf_subject),
+    '--pause', '{pause}',
+    '--size', '{size}',
+    '--slides', '{slides}',
+    'file://{{}}/index.html'.format(builddir),
+    '{{}}/slides.pdf'.format(builddir),
+])
+
+# vim: tw=130 ts=4 sw=4 sts=4 sta et ai nu
