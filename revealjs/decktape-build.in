@@ -13,6 +13,7 @@ pdf_subject = '{title} – {subtitle}. Release: {release} ({identify})'
 subprocess.call([
     'decktape',
     'reveal',
+    '--chrome-arg=--no-sandbox',
     '--chrome-arg=--allow-file-access-from-files',
     '--pdf-author', '"{{}}"'.format(pdf_author),
     '--pdf-title', '"{{}}"'.format(pdf_title),
