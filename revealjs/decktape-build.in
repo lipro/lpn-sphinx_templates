@@ -21,7 +21,7 @@ subprocess.call([
     '--pause', '{pause}',
     '--size', '{size}',
     '--slides', '{slides}',
-    'file://{{}}/index.html'.format(builddir),
+    'file://{{}}/index.html?altMode=2'.format(builddir),
     '{{}}/slides.pdf'.format(builddir),
 ])
 
