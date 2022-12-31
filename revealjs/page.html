@@ -1,0 +1,45 @@
+{%- extends "!page.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {%- if document_branding %}
+    <style>:root{--r-theme-logo: url('{{ pathto(document_branding + '.svg', 1) }}');}</style>
+    <style>:root{--r-theme-front: url('{{ pathto(document_branding + '-front.svg', 1) }}');}</style>
+    <style>:root{--r-theme-corner: url('{{ pathto(document_branding + '-corner.svg', 1) }}');}</style>
+    <style>:root{--r-theme-heading-color: var(--r-theme-heading-color-{{ document_branding }});}</style>
+    <style>:root{--r-theme-shadow-color: var(--r-theme-shadow-color-{{ document_branding }});}</style>
+  {%- endif %}
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+    <div class="copyright">
+      <ul class="field-list simple">
+      {%- if show_copyright %}
+        <li class="field-odd">{%- if hasdoc('copyright') %}
+          {%- trans path=pathto('copyright'), copyright=copyright|e %}&#169; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}
+        {%- else %}
+          {%- trans copyright=copyright|e %}&#169; Copyright {{ copyright }}.{% endtrans %}
+        {%- endif %}</li>
+      {%- endif %}
+      {%- if document_termsofuse %}
+        <li class="field-even">{{ document_termsofuse }}</li>
+      {%- endif %}
+      </ul>
+    </div>
+    <div class="docident">
+      <dl class="field-list simple">
+        <dt class="field-odd">{{ document_title }}</dt><dd class="field-odd">{{ document_subtitle }}</dd>
+      {%- if document_number %}
+        <dt class="field-even">Document Number</dt><dd class="field-even">{{ document_number }}</dd>
+      {%- endif %}
+      {%- if document_revision and document_vcs %}
+        <dt class="field-odd">Revision (VCS)</dt><dd class="field-odd">{{ document_revision }} ({{ document_vcs }})</dd>
+      {%- elif document_revision %}
+        <dt class="field-odd">Revision</dt><dd class="field-odd">{{ document_revision }}</dd>
+      {%- elif document_vcs %}
+        <dt class="field-odd">VCS</dt><dd class="field-odd">{{ document_vcs }}</dd>
+      {%- endif %}
+      </dl>
+    </div>
+{% endblock %}
