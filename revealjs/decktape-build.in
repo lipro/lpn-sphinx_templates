@@ -5,6 +5,8 @@ import subprocess
 from pathlib import Path
 
 builddir = Path(__file__).absolute().parents[0]
+serveuri = 'file://{{}}'.format(builddir)
+# serveuri = 'http://0.0.0.0:8001'
 
 pdf_title = '{title}, {subtitle}'
 pdf_author = '{publisher}, {author}'
@@ -21,7 +23,7 @@ subprocess.call([
     '--pause', '{pause}',
     '--size', '{size}',
     '--slides', '{slides}',
-    'file://{{}}/index.html?altMode=2'.format(builddir),
+    '{{}}/index.html?altMode=2'.format(serveuri),
     '{{}}/slides.pdf'.format(builddir),
 ])
 
