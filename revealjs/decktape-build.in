@@ -1,22 +1,45 @@
 #!{python_executable}
 # -*- coding: utf-8 -*-
 
+import os
 import subprocess
+import threading
 from pathlib import Path
-
-builddir = Path(__file__).absolute().parents[0]
-serveuri = 'file://{{}}'.format(builddir)
-# serveuri = 'http://0.0.0.0:8001'
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 pdf_title = '{title}, {subtitle}'
 pdf_author = '{publisher}, {author}'
 pdf_subject = '{title} – {subtitle}. Release: {release} ({identify})'
 
+builddir = Path(__file__).absolute().parents[0]
+httphost = 'localhost'
+httpport = 56789
+
+# serveuri = 'file://{{}}'.format(builddir)
+serveuri = 'http://{{host}}:{{port}}'.format(
+    host = httphost,
+    port = httpport
+)
+
+class StoppableHTTPServer(HTTPServer):
+
+    def run(self):
+        try:
+            self.serve_forever()
+        except KeyboardInterrupt:
+            pass
+        finally:
+            self.server_close()
+
+os.chdir(builddir)
+server = StoppableHTTPServer((httphost, httpport), SimpleHTTPRequestHandler)
+thread = threading.Thread(name = 'HTTPServer', target = server.run)
+thread.start()
+
 subprocess.call([
     'decktape',
     'reveal',
-    '--chrome-arg=--no-sandbox',
-    '--chrome-arg=--allow-file-access-from-files',
+    '--page-load-timeout', '60000',
     '--pdf-author', '{{}}'.format(pdf_author),
     '--pdf-title', '{{}}'.format(pdf_title),
     '--pdf-subject', '{{}}'.format(pdf_subject),
@@ -26,5 +49,8 @@ subprocess.call([
     '{{}}/index.html?altMode=2'.format(serveuri),
     '{{}}/slides.pdf'.format(builddir),
 ])
+
+server.shutdown()
+thread.join()
 
 # vim: tw=130 ts=4 sw=4 sts=4 sta et ai nu
