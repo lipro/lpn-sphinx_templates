@@ -12,8 +12,12 @@
 % Controlling typographic design of the Table of Contents,
 % List of Figures and List of Tables.
 \cftsetpnumwidth {{1.25cm}}\cftsetrmarg{{1.5cm}}
-\setlength{{\cftchapnumwidth}}{{0.75cm}}
-\setlength{{\cftsecindent}}{{\cftchapnumwidth}}
+\if@cfthaschapter
+  \setlength{{\cftchapnumwidth}}{{0.75cm}}
+  \setlength{{\cftsecindent}}{{\cftchapnumwidth}}
+\else
+  \setlength{{\cftsecindent}}{{0.75cm}}
+\fi
 \setlength{{\cftsecnumwidth}}{{1.25cm}}
 %
 % DO NOT CHANGE TITLE FORMAT -- we use the Bjornstrup fancy chapters
