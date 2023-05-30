@@ -39,6 +39,7 @@ thread.start()
 subprocess.call([
     'decktape',
     'reveal',
+    '--chrome-arg=--no-sandbox',
     '--page-load-timeout', '60000',
     '--pdf-author', '{{}}'.format(pdf_author),
     '--pdf-title', '{{}}'.format(pdf_title),
